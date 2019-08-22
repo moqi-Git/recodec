@@ -1,1 +1,1 @@
-include ':app', ':libmoqidebug', ':libffmpeg'
+include ':app', ':libmoqidebug',':apiopencv'
