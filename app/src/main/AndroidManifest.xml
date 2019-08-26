@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.github.moqi.change">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.github.moqi.change">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:required="true" android:name="camera"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
             android:allowBackup="true"
@@ -13,13 +16,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.AboutActivity">
-        </activity>
+        <activity android:name=".activities.CameraActivity"
+                android:theme="@style/FullScreenTheme"/>
+        <activity android:name=".activities.AboutActivity"></activity>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

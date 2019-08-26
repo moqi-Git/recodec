@@ -44,14 +44,22 @@ class MainActivity : BaseActivity() {
                     5 -> {
                         val version = OpenCVApi().getVersionName()
                         Toast.makeText(this@MainActivity, "$version", Toast.LENGTH_SHORT).show()
-
+                    }
+                    4 -> {
+                        openCamera()
                     }
                 }
 //                Toast.makeText(this@MainActivity, "$p", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun openCamera(){
+        // 获取权限
 
+        val intent = Intent(this, CameraActivity::class.java)
+
+        startActivity(intent)
     }
 
     private fun setupMenu(){
