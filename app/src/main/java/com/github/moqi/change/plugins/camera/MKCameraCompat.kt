@@ -3,6 +3,7 @@ package com.github.moqi.change.plugins.camera
 import android.hardware.Camera
 import android.util.Log
 import android.view.SurfaceHolder
+import com.github.moqi.apiopencv.OpenCVApi
 import java.lang.Exception
 
 
@@ -10,7 +11,8 @@ class MKCameraCompat : MKCamera {
     private val TAG = "MKCAMERA"
 
     private var mCamera: Camera? = null
-
+    private var jniBridge = OpenCVApi()
+    private var isProcessing = false
 
     override fun getInstance(): MKCamera {
         try {
@@ -37,7 +39,13 @@ class MKCameraCompat : MKCamera {
         camera.apply {
             setDisplayOrientation(90)
             setPreviewCallback { bytes, camera ->
-                Log.e(TAG, "get a frame: size=${bytes.size}")
+                if (!isProcessing){
+                    isProcessing = true
+                    Log.e(TAG, "get a frame: size=${bytes.size}")
+                    val frame = jniBridge.findCircle(bytes, pWidth, pHeight)
+                    Log.e(TAG, "process a frame: size=${frame.size}")
+                    isProcessing = false
+                }
             }
         }
     }
